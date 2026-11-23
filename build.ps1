@@ -139,6 +139,10 @@ $serversLines = @(
 )
 Write-Utf8 (Join-Path $stage "servers.txt") (($serversLines -join "`r`n") + "`r`n") $false
 
+Step "write games.txt (external game roots)"
+$gamesText = "# 名称|路径（可添加任意 .minecraft 目录；绝对路径或相对本包；留空只用包内实例）`r`n"
+Write-Utf8 (Join-Path $stage "games.txt") $gamesText $false
+
 Step "write 离线包说明.txt"
 $readmeText = @"
 PCL One 离线包 v$ver（无界面版）

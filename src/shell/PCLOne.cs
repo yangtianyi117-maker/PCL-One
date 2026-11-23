@@ -248,7 +248,9 @@ namespace PCLOne
                 else if (!a.StartsWith("--") && string.IsNullOrEmpty(server)) { server = a; }
             }
 
-            string gameRoot = Path.Combine(Root, gameRel.Replace('/', '\\'));
+            string gameRoot = Path.IsPathRooted(gameRel)
+                ? gameRel
+                : Path.Combine(Root, gameRel.Replace('/', '\\'));
             if (!Directory.Exists(gameRoot)) return Fail("game dir not found: " + gameRoot);
 
             string java = string.IsNullOrEmpty(javaOverride) ? JavaResolver.Choose(Root, gameRoot, instance) : javaOverride;
@@ -370,6 +372,21 @@ namespace PCLOne
             roots.Add(Path.Combine(Root, Cfg.TitanGame));
             roots.Add(Path.Combine(Root, @"vendor\earth\game"));
             roots.Add(Path.Combine(Root, @"vendor\titan\.minecraft"));
+            string gamesFile = Path.Combine(Root, "games.txt");
+            if (File.Exists(gamesFile))
+            {
+                foreach (var line in File.ReadAllLines(gamesFile, Encoding.UTF8))
+                {
+                    string trimmed = line.Trim();
+                    if (trimmed.Length == 0 || trimmed.StartsWith("#")) continue;
+                    int bar = trimmed.IndexOf('|');
+                    if (bar < 0) continue;
+                    string path = trimmed.Substring(bar + 1).Trim();
+                    if (path.Length == 0) continue;
+                    string full = Path.IsPathRooted(path) ? path : Path.Combine(Root, path);
+                    if (Directory.Exists(Path.Combine(full, "versions")) && !roots.Contains(full)) roots.Add(full);
+                }
+            }
             try
             {
                 foreach (var dir in Directory.GetDirectories(Root))
@@ -389,7 +406,9 @@ namespace PCLOne
                 {
                     string id = Path.GetFileName(instanceDir);
                     if (!File.Exists(Path.Combine(instanceDir, id + ".json"))) continue;
-                    string rel = gameRoot.Substring(Root.Length).TrimStart('\\').TrimEnd('\\');
+                    string rel = gameRoot.StartsWith(Root, StringComparison.OrdinalIgnoreCase)
+                        ? gameRoot.Substring(Root.Length).TrimStart('\\').TrimEnd('\\')
+                        : gameRoot;
                     lines.Add(rel + "\t" + id + "\t" + java);
                 }
             }
@@ -521,6 +540,7 @@ namespace PCLOne
             foreach (var lnk in shortcuts) if (!File.Exists(Path.Combine(Root, lnk))) allShortcuts = false;
             check("Shortcuts (6)", allShortcuts, Root + "\\*.lnk");
             check("Server list", File.Exists(Path.Combine(Root, "servers.txt")), Path.Combine(Root, "servers.txt"));
+            check("External games list", File.Exists(Path.Combine(Root, "games.txt")), Path.Combine(Root, "games.txt"));
 
             int consoleScripts = 0;
             try

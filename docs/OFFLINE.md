@@ -62,7 +62,7 @@ ScreenEvents.AFTER_INIT（Fabric Screen API）
 | 启动泰坦 1.7.10 / 1.12.2 | 包内客户端 + Java 8，0 下载 |
 | 开泰坦服 | 包内服务端，0 下载 |
 | 游戏内菜单 | 包内 Mod，0 下载 |
-| 自检 | 24 项：计划、资源、Mod、菜单 Mod、服务器列表、快捷方式、无控制台脚本 |
+| 自检 | 25 项：计划、资源、Mod、菜单 Mod、服务器列表、快捷方式、无控制台脚本 |
 
 **仍需要网络**：地球服本体（`124.221.231.213:25566` / `19132`）。
 没网时快捷方式启动会按单机；菜单里的「进入地球（在线）」会显示原版连接失败的提示。
@@ -90,6 +90,9 @@ dist/PCL One/
 CLI 也可直接调用：
 
 ```powershell
+外部目录：`games.txt` 每行 `名称|路径`（绝对或相对本包），菜单会一起列出；
+`launch` 也接受绝对路径（`PCL One.exe launch D:\mc 1.20.1`）。
+
 PCL One.exe versions
 PCL One.exe launch Earth\.minecraft MyFabricInstance
 PCL One.exe launch Titan\.minecraft 1.12.2-forge-14.23.5.2859 1.2.3.4:25565 --memory 6144 --username Steve

@@ -122,6 +122,34 @@ public final class PclOneScreen extends Screen
             }
         }
 
+        try
+        {
+            File games = new File(root, "games.txt");
+            if (games.isFile())
+            {
+                java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(games));
+                try
+                {
+                    String line;
+                    while ((line = reader.readLine()) != null)
+                    {
+                        line = line.trim();
+                        if (line.isEmpty() || line.startsWith("#")) continue;
+                        int bar = line.indexOf('|');
+                        if (bar < 0) continue;
+                        String label = line.substring(0, bar).trim();
+                        String path = line.substring(bar + 1).trim();
+                        File dir = new File(path);
+                        if (!dir.isAbsolute()) dir = new File(root, path);
+                        if (label.isEmpty()) label = dir.getName();
+                        addRoot(roots, dir, label);
+                    }
+                }
+                finally { reader.close(); }
+            }
+        }
+        catch (Throwable ignored) { }
+
         for (Map.Entry<String, File> e : roots.entrySet())
         {
             File[] instances = new File(e.getValue(), "versions").listFiles();

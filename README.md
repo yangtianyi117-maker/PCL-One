@@ -25,6 +25,8 @@ PCL One.exe launch <gameDir> <instance> [server] [--java path] [--memory MB] [--
 - Java 按版本 JSON 的 `javaVersion.majorVersion` 选（26.3→25，1.7.10/1.12.2→8）：在 `<gameDir>\runtime`、同级 `java\`、包内 JDK 中找匹配项；
 - 新增一个 Fabric/Forge 实例只需放进任意 `.minecraft/versions/`，菜单刷新即可见；
 - 服务器地址可选：`launch Earth\.minecraft MyInstance 1.2.3.4:25565`。
+- 外部游戏目录：在 `games.txt` 写 `名称|路径`（绝对路径或相对本包），菜单会把该目录下的版本一并列出；
+  `launch` 也接受绝对路径，例如 `PCL One.exe launch D:\mc 1.20.1`。
 
 ## 游戏内菜单怎么来的
 
