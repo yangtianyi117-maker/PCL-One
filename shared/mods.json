@@ -1,0 +1,88 @@
+﻿{
+    "mc":  "26.3",
+    "loader":  "fabric",
+    "generated":  "2026-11-23",
+    "note":  "Pinned for the PCL One offline package. Jars live in vendor/earth/mods.",
+    "mods":  [
+                 {
+                     "slug":  "fabric-api",
+                     "project_id":  "P7dR8mSH P7dR8mSH P7dR8mSH P7dR8mSH P7dR8mSH P7dR8mSH P7dR8mSH P7dR8mSH P7dR8mSH P7dR8mSH P7dR8mSH",
+                     "version_id":  "Zns5SSRA 998R2rNP nJlcvFfj EQKgpeKu LEklt8GT bq3SsNGk v2j28coa bNnaTiuM hHj6EvFZ BQfN2OGk oCYG2H4L",
+                     "version_number":  "0.166.2+26.3 0.166.0+26.3 0.165.2+26.3 0.165.0+26.3 0.164.0+26.3 0.163.0+26.3 0.162.0+26.3 0.161.0+26.3 0.160.7+26.3 0.160.6+26.3 0.160.5+26.3",
+                     "file":  "fabric-api-0.166.2+26.3.jar",
+                     "size":  1797523,
+                     "sha1":  "65636253571429971f25f5619692e6c1a6362028",
+                     "url":  "https://cdn.modrinth.com/data/P7dR8mSH/versions/Zns5SSRA/fabric-api-0.166.2%2B26.3.jar"
+                 },
+                 {
+                     "slug":  "sodium",
+                     "project_id":  "AANobbMI AANobbMI AANobbMI AANobbMI AANobbMI AANobbMI AANobbMI AANobbMI",
+                     "version_id":  "tFcTKXDx v7Lw0h1m 2MZWfUts aFVpk3tG RlRgB5qP g6ju16VJ v4PSXean bAZQdGpg",
+                     "version_number":  "mc26.3-0.9.3-fabric mc26.3-0.9.3-beta.5-fabric mc26.3-0.9.3-beta.4-fabric mc26.3-0.9.3-beta.3-fabric mc26.3-0.9.3-beta.2-fabric mc26.3-0.9.3-beta.1-fabric mc26.3-0.9.3-alpha.1-fabric mc26.3-0.9.2-fabric",
+                     "file":  "sodium-fabric-0.9.3+mc26.3.jar",
+                     "size":  1914989,
+                     "sha1":  "818009279d57d8c8c4fa814e685e7c9122f7677f",
+                     "url":  "https://cdn.modrinth.com/data/AANobbMI/versions/tFcTKXDx/sodium-fabric-0.9.3%2Bmc26.3.jar"
+                 },
+                 {
+                     "slug":  "lithium",
+                     "project_id":  "gvQqBUqZ gvQqBUqZ gvQqBUqZ gvQqBUqZ",
+                     "version_id":  "Lal8mJGR fWv5bnZk xS0Q8LSi WXHRsMRl",
+                     "version_number":  "mc26.3-0.26.4-fabric mc26.3-0.26.3-fabric mc26.3-0.26.2-fabric mc26.3-0.26.1-fabric",
+                     "file":  "lithium-fabric-0.26.4+mc26.3.jar",
+                     "size":  921530,
+                     "sha1":  "b87fcae581c1ff1b3aac8314004c9d7616f90827",
+                     "url":  "https://cdn.modrinth.com/data/gvQqBUqZ/versions/Lal8mJGR/lithium-fabric-0.26.4%2Bmc26.3.jar"
+                 },
+                 {
+                     "slug":  "ferrite-core",
+                     "project_id":  "uXXizFIs",
+                     "version_id":  "d5ddUdiB",
+                     "version_number":  "9.0.0-fabric",
+                     "file":  "ferritecore-9.0.0-fabric.jar",
+                     "size":  72677,
+                     "sha1":  "eac76ff0f3753422c61b2c44487d0d195d88d4bc",
+                     "url":  "https://cdn.modrinth.com/data/uXXizFIs/versions/d5ddUdiB/ferritecore-9.0.0-fabric.jar"
+                 },
+                 {
+                     "slug":  "xaeros-minimap",
+                     "project_id":  "1bokaNcj 1bokaNcj 1bokaNcj 1bokaNcj 1bokaNcj 1bokaNcj",
+                     "version_id":  "MfxfgXaO eUEhnw8G B2aG1aya YPkAliDt ie70HnZq bxZ2OjkZ",
+                     "version_number":  "fabric-26.3-26.6.2 fabric-26.3-26.6.1 fabric-26.3-26.6.0 fabric-26.3-26.5.3 fabric-26.3-26.5.2 fabric-26.3-26.5.1",
+                     "file":  "xaerominimap-fabric-26.3-26.6.2.jar",
+                     "size":  2233189,
+                     "sha1":  "9b44e5718f9258ed32283a391e19a1d46464188a",
+                     "url":  "https://cdn.modrinth.com/data/1bokaNcj/versions/MfxfgXaO/xaerominimap-fabric-26.3-26.6.2.jar"
+                 },
+                 {
+                     "slug":  "xaeros-world-map",
+                     "project_id":  "NcUtCpym NcUtCpym NcUtCpym NcUtCpym NcUtCpym NcUtCpym",
+                     "version_id":  "VM8lNSSM IEtfiHVq nz9xjzWi UleMm8za wFzCYgM6 f9XDypdw",
+                     "version_number":  "fabric-26.3-1.47.2 fabric-26.3-1.47.1 fabric-26.3-1.47.0 fabric-26.3-1.46.4 fabric-26.3-1.46.3 fabric-26.3-1.46.2",
+                     "file":  "xaeroworldmap-fabric-26.3-1.47.2.jar",
+                     "size":  1488669,
+                     "sha1":  "1282302b6c92050cfab7c1db45cf3d92d9a331c5",
+                     "url":  "https://cdn.modrinth.com/data/NcUtCpym/versions/VM8lNSSM/xaeroworldmap-fabric-26.3-1.47.2.jar"
+                 },
+                 {
+                     "slug":  "modmenu",
+                     "project_id":  "mOgUt4GM mOgUt4GM mOgUt4GM",
+                     "version_id":  "xckkBHD5 kyy7dbrZ lcxkZSq6",
+                     "version_number":  "21.0.1 21.0.0 21.0.0-beta.1",
+                     "file":  "modmenu-21.0.1.jar",
+                     "size":  862761,
+                     "sha1":  "884ab621735264187ccbfc87017cf55bb54d47ee",
+                     "url":  "https://cdn.modrinth.com/data/mOgUt4GM/versions/xckkBHD5/modmenu-21.0.1.jar"
+                 },
+                 {
+                     "slug":  "cloth-config",
+                     "project_id":  "9s6osm5g 9s6osm5g",
+                     "version_id":  "fg2uyxOW eZ3xIIuk",
+                     "version_number":  "26.3.159+fabric 26.3.158+fabric",
+                     "file":  "cloth-config-fabric-26.3.159.jar",
+                     "size":  1135009,
+                     "sha1":  "9a5cce069380a2047250831dcb19f4ef1b15872d",
+                     "url":  "https://cdn.modrinth.com/data/9s6osm5g/versions/fg2uyxOW/cloth-config-fabric-26.3.159.jar"
+                 }
+             ]
+}

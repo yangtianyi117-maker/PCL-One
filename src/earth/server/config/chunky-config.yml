@@ -1,0 +1,4 @@
+# Chunky / ChunkyBorder (subset). Apply the border in-game, not by editing this file.
+# See docs/COORDS.md section 5.
+workers: 2
+silent: false

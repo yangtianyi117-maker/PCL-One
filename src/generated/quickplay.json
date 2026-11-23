@@ -1,0 +1,17 @@
+﻿{
+    "host":  "124.221.231.213",
+    "javaPort":  25566,
+    "bedrockPort":  19132,
+    "instance":  "Earth-26.3-Fabric",
+    "serverName":  "Earth 1:1000",
+    "mc":  "26.3",
+    "offline":  true,
+    "gameDir":  "Earth/.minecraft",
+    "map":  {
+                "scale":  "1:1000",
+                "size":  "39936x31104",
+                "bounds":  "-19968,-15360 .. 19968,15744",
+                "projection":  "WebMercator",
+                "seaLevel":  62
+            }
+}

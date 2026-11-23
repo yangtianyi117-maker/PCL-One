@@ -1,0 +1,19 @@
+{
+  "paper": "26.3",
+  "note": "Fill version/file/sha256 at deploy time. Sources: modrinth | url | manual.",
+  "plugins": [
+    { "name": "Towny", "source": "modrinth", "id": "towny", "version": null, "file": null, "sha256": null },
+    { "name": "BlueMap", "source": "modrinth", "id": "bluemap", "version": null, "file": null, "sha256": null },
+    { "name": "Chunky", "source": "modrinth", "id": "chunky", "version": null, "file": null, "sha256": null },
+    { "name": "ChunkyBorder", "source": "modrinth", "id": "chunkyborder", "version": null, "file": null, "sha256": null },
+    { "name": "CoreProtect", "source": "modrinth", "id": "coreprotect", "version": null, "file": null, "sha256": null },
+    { "name": "LuckPerms", "source": "modrinth", "id": "luckperms", "version": null, "file": null, "sha256": null },
+    { "name": "ViaVersion", "source": "modrinth", "id": "viaversion", "version": null, "file": null, "sha256": null },
+    { "name": "ViaBackwards", "source": "modrinth", "id": "viabackwards", "version": null, "file": null, "sha256": null },
+    { "name": "Geyser-Spigot", "source": "url", "url": "https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot", "version": null, "file": "Geyser-Spigot.jar", "sha256": null },
+    { "name": "Floodgate", "source": "url", "url": "https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot", "version": null, "file": "floodgate-spigot.jar", "sha256": null },
+    { "name": "EssentialsX", "source": "url", "url": "https://github.com/EssentialsX/Essentials/releases/latest", "version": null, "file": null, "sha256": null, "note": "download the EssentialsX + EssentialsXChat jars manually" },
+    { "name": "Vault", "source": "url", "url": "https://github.com/milkbowl/Vault/releases/latest", "version": null, "file": null, "sha256": null },
+    { "name": "AuthMe", "source": "url", "url": "https://github.com/AuthMe/AuthMeReloaded/releases/latest", "version": null, "file": null, "sha256": null }
+  ]
+}

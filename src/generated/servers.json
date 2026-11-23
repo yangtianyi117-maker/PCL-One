@@ -1,0 +1,23 @@
+﻿{
+    "servers":  [
+                    {
+                        "id":  "earth",
+                        "name":  "地球服",
+                        "subtitle":  "Earth 1:1000 · 26.3 · 离线客户端",
+                        "description":  "一张真实地球地图：PC Java 与手机 Bedrock 进入同一个世界，出生在伊斯坦布尔，去你现实中的家乡建城。",
+                        "tags":  [
+                                     "地球",
+                                     "生存",
+                                     "国家",
+                                     "基岩可进"
+                                 ],
+                        "mc":  "26.3",
+                        "loader":  "Vanilla",
+                        "offline":  true,
+                        "java":  "124.221.231.213:25566",
+                        "bedrock":  "124.221.231.213:19132",
+                        "source":  "PCL One",
+                        "icon":  "http://124.221.231.213/pclpro/icon-earth.png"
+                    }
+                ]
+}

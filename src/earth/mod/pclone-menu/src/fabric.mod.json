@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "pcl-one-menu",
+  "version": "1.0.0",
+  "name": "PCL One Menu",
+  "description": "All PCL One features inside the Minecraft title screen menu.",
+  "authors": ["PCL One"],
+  "license": "proprietary",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["pcl.one.PclOneMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.0",
+    "minecraft": "~26.3",
+    "java": ">=21",
+    "fabric-api": "*",
+    "fabric-screen-api-v1": "*"
+  }
+}

@@ -1,0 +1,11 @@
+vendor/
+dist/
+PCL One.exe
+PCLOne-*.txt
+*.log
+src/mobile/build/
+src/mobile/dist/
+src/mobile/pojav/
+src/mobile/java-launcher/
+src/mobile/keystore/
+src/mobile/docs/

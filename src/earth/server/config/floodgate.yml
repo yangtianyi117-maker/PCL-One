@@ -1,0 +1,5 @@
+# Floodgate config (subset; deploy copies it to plugins/floodgate/config.yml)
+username-prefix: "."
+replace-spaces: true
+enable-encryption: false
+confirmation-code: "123456"

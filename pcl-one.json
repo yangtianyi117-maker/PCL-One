@@ -1,0 +1,38 @@
+{
+  "product": "PCL One",
+  "version": "6.0.0",
+  "built": "2026-11-23",
+  "edition": "offline-native",
+  "offline": true,
+  "earth": {
+    "name": "地球服",
+    "subtitle": "Earth 1:1000 · 26.3 · 离线客户端",
+    "mc": "26.3",
+    "host": "124.221.231.213",
+    "javaPort": 25566,
+    "bedrockPort": 19132,
+    "instance": "Earth-26.3-Fabric",
+    "sourceInstance": "26.3-Fabric",
+    "serverName": "Earth 1:1000",
+    "description": "一张真实地球地图：PC Java 与手机 Bedrock 进入同一个世界，出生在伊斯坦布尔，去你现实中的家乡建城。",
+    "tags": ["地球", "生存", "国家", "基岩可进"],
+    "spawn": { "x": 3233, "y": 64, "z": -4826 },
+    "portable": true,
+    "gameDir": "Earth/.minecraft",
+    "java": "Earth/java/jdk-25.0.5+8/bin/java.exe",
+    "guideUrl": "http://124.221.231.213/pclpro/earth.html",
+    "controlUrl": "http://124.221.231.213/pclpro/servers.json"
+  },
+  "titan": {
+    "gameDir": "Titan/.minecraft",
+    "java": "Titan/.minecraft/runtime/java-8/bin/java.exe",
+    "version1710": "1.7.10-Forge10.13.4.1614-1.7.10",
+    "version1122": "1.12.2-forge-14.23.5.2859"
+  },
+  "mobile": {
+    "package": "com.pclpro.mobile",
+    "versionName": "2.1.0",
+    "versionCode": 4,
+    "apkName": "PCLProMobile-2.1.0.apk"
+  }
+}

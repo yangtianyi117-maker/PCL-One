@@ -1,0 +1,20 @@
+# Geyser-Spigot config (subset; deploy copies it to plugins/Geyser-Spigot/config.yml)
+bedrock:
+  address: 0.0.0.0
+  port: 19132
+  motd1: PCL Earth
+  motd2: "1:1000 | Java + Bedrock"
+remote:
+  address: 127.0.0.1
+  port: 25565
+  auth-type: floodgate
+  allow-password-authentication: false
+  use-proxy-protocol: false
+floodgate-key-file: key.pem
+max-players: 50
+debug-mode: false
+show-cooldown: true
+passthrough-motd: true
+passthrough-player-counts: true
+legacy-ping-passthrough: false
+ping-passthrough-interval: 3

@@ -1,0 +1,33 @@
+services:
+  mc:
+    # Java 25 image; if the tag is unavailable use `itzg/minecraft-server:latest`
+    # and set JAVA_VERSION=25 in the environment.
+    image: itzg/minecraft-server:java25
+    container_name: pcl-earth
+    environment:
+      EULA: "TRUE"
+      TYPE: "PAPER"
+      VERSION: "26.3"
+      MEMORY: "10G"
+      ONLINE_MODE: "FALSE"
+      LEVEL: "Earth1000"
+      SERVER_PORT: "25565"
+      MOTD: "PCL Earth | 1:1000 | Java + Bedrock"
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: "${RCON_PASSWORD:-change-me}"
+      TZ: "Asia/Shanghai"
+      VIEW_DISTANCE: "8"
+      SIMULATION_DISTANCE: "4"
+      MAX_PLAYERS: "50"
+      SPAWN_PROTECTION: "32"
+    ports:
+      - "25565:25565"
+      - "19132:19132/udp"
+      - "8100:8100"
+      - "127.0.0.1:25575:25575"
+    volumes:
+      - ./data:/data
+      - ./plugins:/data/plugins
+      - ./config:/config:ro
+    restart: unless-stopped
+    stop_grace_period: 60s
