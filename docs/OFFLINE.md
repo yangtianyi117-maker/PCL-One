@@ -62,7 +62,7 @@ ScreenEvents.AFTER_INIT（Fabric Screen API）
 | 启动泰坦 1.7.10 / 1.12.2 | 包内客户端 + Java 8，0 下载 |
 | 开泰坦服 | 包内服务端，0 下载 |
 | 游戏内菜单 | 包内 Mod，0 下载 |
-| 自检 | 21 项：计划、资源、Mod、菜单 Mod、服务器列表、快捷方式、无控制台脚本 |
+| 自检 | 24 项：计划、资源、Mod、菜单 Mod、服务器列表、快捷方式、无控制台脚本 |
 
 **仍需要网络**：地球服本体（`124.221.231.213:25566` / `19132`）。
 没网时快捷方式启动会按单机；菜单里的「进入地球（在线）」会显示原版连接失败的提示。
@@ -85,14 +85,14 @@ dist/PCL One/
 ## 6. 通用版本启动
 
 菜单不写死版本：扫描包内所有 `<root>/.minecraft/versions/<id>/<id>.json`，每个实例一个按钮，
-点击调用 `PCL One.exe launch <gameDir> <instance>`。Java 按
-`<gameDir>\runtime\java-*` → `<gameDir>\..\java\*` → 包内 JDK 的顺序自动选择。
+点击调用 `PCL One.exe launch <gameDir> <instance>`。Java 按版本 JSON 的 `javaVersion.majorVersion` 自动匹配（26.3→25，1.7.10/1.12.2→8），
+在 `<gameDir>\runtime`、同级 `java\`、包内 JDK 中选。
 CLI 也可直接调用：
 
 ```powershell
 PCL One.exe versions
 PCL One.exe launch Earth\.minecraft MyFabricInstance
-PCL One.exe launch Titan\.minecraft 1.12.2-forge-14.23.5.2859 1.2.3.4:25565
+PCL One.exe launch Titan\.minecraft 1.12.2-forge-14.23.5.2859 1.2.3.4:25565 --memory 6144 --username Steve
 ```
 
 ## 7. 验证（2026-11-23 本会话）

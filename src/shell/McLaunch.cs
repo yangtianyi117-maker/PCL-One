@@ -24,6 +24,101 @@ namespace PCLOne
     }
 
     /// <summary>
+    /// Picks a Java for a version by reading javaVersion.majorVersion from the version JSON
+    /// (following inheritsFrom) and matching the bundled JDKs. No hardcoded per-instance Java.
+    /// </summary>
+    internal static class JavaResolver
+    {
+        public static string Choose(string packageRoot, string gameRoot, string instanceId)
+        {
+            int required = RequiredMajor(gameRoot, instanceId);
+            var candidates = new List<string>();
+
+            AddRuntime(candidates, Path.Combine(gameRoot, "runtime"));
+            var parent = Directory.GetParent(gameRoot);
+            if (parent != null) AddRuntime(candidates, Path.Combine(parent.FullName, "java"));
+            AddRuntime(candidates, Path.Combine(gameRoot, "java"));
+
+            try
+            {
+                foreach (var dir in Directory.GetDirectories(packageRoot))
+                {
+                    AddRuntime(candidates, Path.Combine(dir, "java"));
+                    AddRuntime(candidates, Path.Combine(dir, ".minecraft", "runtime"));
+                }
+            }
+            catch { }
+
+            AddRuntime(candidates, Path.Combine(packageRoot, @"vendor\pcl-pro\PCLProRuntime\PCL\runtime"));
+            AddRuntime(candidates, Path.Combine(packageRoot, @"vendor\titan\.minecraft\runtime"));
+
+            string exact = null, higher = null, lower = null;
+            int higherMajor = int.MaxValue, lowerMajor = int.MinValue;
+
+            foreach (var java in candidates)
+            {
+                int major;
+                try { major = LaunchPlan.JavaMajor(java); } catch { continue; }
+
+                if (major == required) { exact = java; break; }
+                if (major > required && major < higherMajor) { higher = java; higherMajor = major; }
+                if (major < required && major > lowerMajor) { lower = java; lowerMajor = major; }
+            }
+
+            return exact ?? higher ?? lower;
+        }
+
+        private static void AddRuntime(List<string> list, string runtimeRoot)
+        {
+            try
+            {
+                if (!Directory.Exists(runtimeRoot)) return;
+
+                string direct = Path.Combine(runtimeRoot, @"bin\java.exe");
+                if (File.Exists(direct) && !list.Contains(direct)) list.Add(direct);
+
+                foreach (var dir in Directory.GetDirectories(runtimeRoot))
+                {
+                    string exe = Path.Combine(dir, @"bin\java.exe");
+                    if (File.Exists(exe) && !list.Contains(exe)) list.Add(exe);
+                }
+            }
+            catch { }
+        }
+
+        private static int RequiredMajor(string gameRoot, string instanceId)
+        {
+            try
+            {
+                var ser = new JavaScriptSerializer();
+                var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                string id = instanceId;
+
+                while (!string.IsNullOrEmpty(id) && seen.Add(id))
+                {
+                    string path = Path.Combine(gameRoot, "versions", id, id + ".json");
+                    if (!File.Exists(path)) break;
+
+                    var doc = ser.Deserialize<Dictionary<string, object>>(File.ReadAllText(path, Encoding.UTF8));
+                    object javaVersion;
+                    if (doc.TryGetValue("javaVersion", out javaVersion))
+                    {
+                        var jv = javaVersion as Dictionary<string, object>;
+                        object major;
+                        if (jv != null && jv.TryGetValue("majorVersion", out major))
+                            return Convert.ToInt32(major);
+                    }
+
+                    object parent;
+                    id = doc.TryGetValue("inheritsFrom", out parent) ? Convert.ToString(parent) : null;
+                }
+            }
+            catch { }
+            return 8;
+        }
+    }
+
+    /// <summary>
     /// First-principles launcher: read version JSON (+ inheritsFrom chain), resolve libraries,
     /// extract natives, build the java command line. No third-party launcher involved.
     /// </summary>
@@ -76,9 +171,13 @@ namespace PCLOne
         {
             var plan = new LaunchPlan();
             plan.WorkingDirectory = Path.Combine(req.GameRoot, "versions", req.Instance);
+
+            if (string.IsNullOrEmpty(req.Java))
+                req.Java = JavaResolver.Choose(AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\'), req.GameRoot, req.Instance) ?? "";
             plan.Java = req.Java;
 
-            if (!File.Exists(req.Java)) plan.Errors.Add("Java 不存在：" + req.Java);
+            if (string.IsNullOrEmpty(req.Java)) plan.Errors.Add("找不到匹配的 Java（版本要求 " + req.Instance + "）");
+            else if (!File.Exists(req.Java)) plan.Errors.Add("Java 不存在：" + req.Java);
             if (!Directory.Exists(plan.WorkingDirectory)) { plan.Errors.Add("实例目录不存在：" + plan.WorkingDirectory); return plan; }
 
             string instanceJson = Path.Combine(plan.WorkingDirectory, req.Instance + ".json");

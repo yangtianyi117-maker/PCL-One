@@ -18,11 +18,11 @@
 
 ```text
 PCL One.exe versions                                  # 生成 PCLOne-versions.txt
-PCL One.exe launch <gameDir> <instance> [host:port]   # 通用启动（可选自动进服）
+PCL One.exe launch <gameDir> <instance> [server] [--java path] [--memory MB] [--username name]
 ```
 
 - `<gameDir>` 是相对综合包根目录的路径，例如 `Earth\.minecraft`、`Titan\.minecraft`；
-- Java 自动选择：`<gameDir>\runtime\java-*` → `<gameDir>\..\java\*` → 包内 JDK 兜底；
+- Java 按版本 JSON 的 `javaVersion.majorVersion` 选（26.3→25，1.7.10/1.12.2→8）：在 `<gameDir>\runtime`、同级 `java\`、包内 JDK 中找匹配项；
 - 新增一个 Fabric/Forge 实例只需放进任意 `.minecraft/versions/`，菜单刷新即可见；
 - 服务器地址可选：`launch Earth\.minecraft MyInstance 1.2.3.4:25565`。
 

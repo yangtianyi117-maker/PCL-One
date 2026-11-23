@@ -136,7 +136,7 @@ namespace PCLOne
                     return new LaunchRequest
                     {
                         Display = "泰坦 1.7.10", GameRoot = TitanRoot, Instance = Cfg.Titan1710,
-                        Java = TitanJavaExe, MemoryMb = Settings.MemoryMb,
+                        Java = "", MemoryMb = Settings.MemoryMb,
                         Username = Settings.Sanitize(Settings.Username), JoinServer = ""
                     };
                 case "titan1122":
@@ -144,7 +144,7 @@ namespace PCLOne
                     return new LaunchRequest
                     {
                         Display = "泰坦 1.12.2", GameRoot = TitanRoot, Instance = Cfg.Titan1122,
-                        Java = TitanJavaExe, MemoryMb = Settings.MemoryMb,
+                        Java = "", MemoryMb = Settings.MemoryMb,
                         Username = Settings.Sanitize(Settings.Username), JoinServer = ""
                     };
                 default: return null;
@@ -158,7 +158,7 @@ namespace PCLOne
                 Display = Cfg.EarthName,
                 GameRoot = EarthRoot,
                 Instance = Cfg.EarthInstance,
-                Java = EarthJavaExe,
+                Java = "",
                 MemoryMb = Settings.MemoryMb,
                 Username = Settings.Sanitize(Settings.Username),
                 JoinServer = join ? Cfg.Host + ":" + Cfg.JavaPort : ""
@@ -204,7 +204,7 @@ namespace PCLOne
                     case "titan1122":
                         return RunGame("titan1122");
                     case "launch":
-                        return RunGeneric(extra, args.Length > 2 ? args[2] : null, args.Length > 3 ? args[3] : null);
+                        return RunGeneric(args);
                     case "versions":
                         return ListVersions();
                     case "plan":
@@ -226,16 +226,33 @@ namespace PCLOne
             }
         }
 
-        private static int RunGeneric(string gameRel, string instance, string server)
+        private static int RunGeneric(string[] args)
         {
-            if (string.IsNullOrEmpty(gameRel) || string.IsNullOrEmpty(instance))
-                return Fail("usage: launch <gameDirRelative> <instance> [server]");
+            if (args.Length < 3)
+                return Fail("usage: launch <gameDirRelative> <instance> [server] [--java path] [--memory MB] [--username name]");
+
+            string gameRel = args[1];
+            string instance = args[2];
+            string server = "";
+            string javaOverride = "";
+            int memory = Settings.MemoryMb;
+            string username = Settings.Sanitize(Settings.Username);
+
+            for (int i = 3; i < args.Length; i++)
+            {
+                string a = args[i];
+                if (a == "--server" && i + 1 < args.Length) { server = args[++i]; }
+                else if (a == "--java" && i + 1 < args.Length) { javaOverride = args[++i]; }
+                else if (a == "--memory" && i + 1 < args.Length) { int.TryParse(args[++i], out memory); }
+                else if (a == "--username" && i + 1 < args.Length) { username = Settings.Sanitize(args[++i]); }
+                else if (!a.StartsWith("--") && string.IsNullOrEmpty(server)) { server = a; }
+            }
 
             string gameRoot = Path.Combine(Root, gameRel.Replace('/', '\\'));
             if (!Directory.Exists(gameRoot)) return Fail("game dir not found: " + gameRoot);
 
-            string java = FindJava(gameRoot);
-            if (java == null) return Fail("no java found for " + gameRoot);
+            string java = string.IsNullOrEmpty(javaOverride) ? JavaResolver.Choose(Root, gameRoot, instance) : javaOverride;
+            if (string.IsNullOrEmpty(java)) return Fail("no matching java for " + gameRoot + " / " + instance);
 
             var req = new LaunchRequest
             {
@@ -243,9 +260,9 @@ namespace PCLOne
                 GameRoot = gameRoot,
                 Instance = instance,
                 Java = java,
-                MemoryMb = Settings.MemoryMb,
-                Username = Settings.Sanitize(Settings.Username),
-                JoinServer = server ?? ""
+                MemoryMb = Math.Max(512, memory),
+                Username = username,
+                JoinServer = server
             };
 
             if (!string.IsNullOrEmpty(req.JoinServer) && !Online(1200))
@@ -458,6 +475,9 @@ namespace PCLOne
                 check("plan " + kind, plan.Ok, plan.Ok
                     ? (plan.ClasspathEntries + " jars, main=" + plan.MainClass + ", java=" + req.Java)
                     : string.Join("; ", plan.Errors.ToArray()));
+                int expectedJava = kind == "earth" ? 25 : 8;
+                int chosenJava = plan.Ok ? LaunchPlan.JavaMajor(plan.Java) : -1;
+                check("java " + kind, chosenJava == expectedJava, "expected " + expectedJava + ", got " + chosenJava + " (" + plan.Java + ")");
 
                 string indexId = AssetIndexOf(req);
                 string indexPath = Path.Combine(req.GameRoot, "assets", "indexes", indexId + ".json");
