@@ -1,4 +1,4 @@
-﻿<#
+<#
   PCL One build orchestrator - OFFLINE EDITION.
 
   Single source of truth: pcl-one.json + shared/ + src/ + vendor/.
@@ -120,6 +120,9 @@ Copy-Tree (Join-Path $Root "vendor\server") (Join-Path $stage "Server")
 Copy-Item (Join-Path $Root "PCL One.exe") $stage -Force
 Copy-Item (Join-Path $Root "pcl-one.json") $stage -Force
 Copy-Item (Join-Path $Root "README.md") $stage -Force
+if (Test-Path (Join-Path $Root "README.zh-CN.md")) {
+    Copy-Item (Join-Path $Root "README.zh-CN.md") $stage -Force
+}
 Copy-Tree (Join-Path $Root "shared") (Join-Path $stage "shared") @() @("mobile-readme.txt")
 New-Item -ItemType Directory -Force -Path (Join-Path $stage "docs") | Out-Null
 Get-ChildItem (Join-Path $Root "docs") -Filter *.md | Copy-Item -Destination (Join-Path $stage "docs") -Force
