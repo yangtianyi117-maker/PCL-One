@@ -33,7 +33,7 @@
 ## 3. 已验证的“可删除”证据
 
 1. **单一配置**：`pcl-one.json` 驱动 EXE（运行时读取）、APK（生成 `OfficialServers.java`）、服务端控制面（`servers.json`/`earth.html`）、安装器（`quickplay.json`/`mods.json`）。
-2. **单一构建**：`build.ps1` 只读 `src/`、`vendor/`、`shared/`、`pcl-one.json`。
+2. **单一构建**：`build.ps1` 只读 `launcher/`、`menu/`、`earth/`、`mobile/`、`generated/`、`vendor/`、`shared/`、`pcl-one.json`。
 3. **无旧路径依赖**：`src/`、`tools/`、`build.ps1` 中没有指向四个旧 Desktop 文件夹的功能性路径；安装器仅保留 Desktop 作为最后兜底，包内 `Earth\PCLPro` 优先。
 4. **实测**：把四个旧文件夹移出 Desktop 后，在 `PCL One` 内执行完整离线构建（EXE + Earth payload + dist + zip + 单文件 exe）与 25 项自检全部通过。四个旧文件夹现已归档到 `Desktop\_PCL One Archive`，构建与运行不再依赖它们。
 5. **离线**：`dist\PCL One` 内的地球客户端、Mod、Java 都在包内；`tools\offline-smoke.ps1` 只用包内文件启动过 26.3 + Fabric，见 `docs\OFFLINE.md`。

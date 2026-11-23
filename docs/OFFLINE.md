@@ -18,7 +18,7 @@
 
 ## 2. 游戏内菜单 Mod
 
-`src/earth/mod/pclone-menu`，Fabric 客户端 Mod，id `pcl-one-menu`：
+`menu/`，Fabric 客户端 Mod，id `pcl-one-menu`：
 
 ```text
 ScreenEvents.AFTER_INIT（Fabric Screen API）
