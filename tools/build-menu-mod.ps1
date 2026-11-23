@@ -1,4 +1,4 @@
-<#
+﻿<#
   Build the in-game menu mod (Fabric, client only) with plain javac + jar.
   No Gradle, no network: Minecraft 26.3 ships with official class names, and the
   Fabric API modules we need are inside the fabric-api jar already in mods/.
@@ -47,12 +47,12 @@ $screen = Get-ChildItem (Join-Path $tmp "api") -Filter "fabric-screen-api-v1-*.j
 if (-not $base -or -not $screen) { throw "fabric-api nested modules not found in $($api.Name)" }
 
 $classpath = (@($mc, $brigadier.FullName, $loader.FullName, $base.FullName, $screen.FullName) -join ";")
-$sources = @(Get-ChildItem (Join-Path $Root "src\earth\mod\pclone-menu\src") -Recurse -Filter *.java | ForEach-Object { $_.FullName })
+$sources = @(Get-ChildItem (Join-Path $Root "menu\src") -Recurse -Filter *.java | ForEach-Object { $_.FullName })
 
 & $javac --release 21 -encoding UTF-8 -nowarn -cp $classpath -d (Join-Path $tmp "classes") @sources
 if ($LASTEXITCODE -ne 0) { throw "javac failed" }
 
-Copy-Item (Join-Path $Root "src\earth\mod\pclone-menu\src\fabric.mod.json") (Join-Path $tmp "classes\fabric.mod.json") -Force
+Copy-Item (Join-Path $Root "menu\src\fabric.mod.json") (Join-Path $tmp "classes\fabric.mod.json") -Force
 
 $outJar = Join-Path $Root ("vendor\earth\mods\pclone-menu-{0}.jar" -f $Version)
 if (Test-Path $outJar) { Remove-Item $outJar -Force }

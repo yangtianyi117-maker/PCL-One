@@ -2,7 +2,7 @@
 
 > **3.0.0 变更**：本文 1–9 节记录的是「用第三方启动器做运行时」的设计演进。
 > 从 3.0.0 起，发布包不再包含 PCL Pro / PCL 2.99，启动逻辑改为
-> `src/shell/McLaunch.cs` 的原生实现（版本 JSON → classpath → java）。
+> `launcher/McLaunch.cs` 的原生实现（版本 JSON → classpath → java）。
 > 见第 10 节与 `OFFLINE.md`。
 
 ## 1. 需求拆解
@@ -101,11 +101,11 @@ pcl-one.json
 - 手机 APK 不再手写常量，构建前由模板生成 `OfficialServers.java`；
 - 地球安装器的默认主机/实例来自生成的 `payload/quickplay.json`；
 - 服务端 `servers.json` / `earth.html` 由同一配置生成；
-- 发布目录 `dist/PCL One` 只由 `vendor/` + `src/` + 构建物组成。
+- 发布目录 `dist/PCL One` 只由 `vendor/` + `launcher/`、`menu/`、`earth/`、`mobile/` + 构建物组成。
 
 可删除旧文件夹的判据：
 
-1. 所有**可重建**的东西都在 `src/`（壳、APK、地球客户端/服务端、文档）；
+1. 所有**可重建**的东西都在 `launcher/`、`menu/`、`earth/`、`mobile/`（壳、APK、地球客户端/服务端、文档）；
 2. 所有**不可重建**的东西都在 `vendor/`（PCL Pro、泰坦、服务端世界）；
 3. 构建脚本不引用任何旧 Desktop 路径；
 4. 已在旧文件夹改名后完成一次全量构建与自检。

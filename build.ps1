@@ -75,7 +75,7 @@ if ($LASTEXITCODE -ne 0) {
 Step "generate config artifacts"
 & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $Root "tools\gen-config.ps1")
 if ($LASTEXITCODE -ne 0) { throw "gen-config failed" }
-Ensure (Join-Path $Root "src\generated\OfficialServers.java")
+Ensure (Join-Path $Root "generated\OfficialServers.java")
 
 Step "build in-game menu mod"
 & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $Root "tools\build-menu-mod.ps1")
@@ -84,8 +84,8 @@ if ($LASTEXITCODE -ne 0) { throw "menu mod build failed" }
 Step "compile shell"
 Ensure $Csc
 $shellOut = Join-Path $Root "PCL One.exe"
-$shellSrc = Join-Path $Root "src\shell\PCLOne.cs"
-$engineSrc = Join-Path $Root "src\shell\McLaunch.cs"
+$shellSrc = Join-Path $Root "launcher\PCLOne.cs"
+$engineSrc = Join-Path $Root "launcher\McLaunch.cs"
 Ensure $engineSrc
 & $Csc /nologo /target:winexe /platform:anycpu /codepage:65001 /utf8output `
     /r:System.dll /r:System.Web.Extensions.dll `
@@ -276,8 +276,8 @@ if (-not $SkipZip) {
     Write-Host ("zip: {0}  ({1:N1} MB)" -f $zip, ((Get-Item $zip).Length / 1MB))
 
     Step "build single-file offline exe (sfx)"
-    $sfxSrc = Join-Path $Root "src\shell\PCLOneSetup.cs"
-    $sfxInfo = Join-Path $Root "src\generated\SfxInfo.cs"
+    $sfxSrc = Join-Path $Root "launcher\PCLOneSetup.cs"
+    $sfxInfo = Join-Path $Root "generated\SfxInfo.cs"
     Ensure $sfxSrc
     Ensure $sfxInfo
     $sfxBoot = Join-Path $env:TEMP ("PCLOneSetup-" + [guid]::NewGuid().ToString("N") + ".exe")

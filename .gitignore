@@ -1,0 +1,11 @@
+vendor/
+dist/
+PCL One.exe
+PCLOne-*.txt
+*.log
+.build-*.log
+custom/bin/
+custom/obj/
+custom/.vs/
+custom/**/bin/
+custom/**/obj/

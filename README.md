@@ -1,4 +1,4 @@
-# PCL One · 游戏内菜单版（Minecraft 离线 Pro）
+﻿# PCL One · 游戏内菜单版（Minecraft 离线 Pro）
 
 **全部功能集成在 Minecraft 自己的菜单里**：标题界面右上角多一个「PCL One」按钮，
 点开就是完整功能菜单。没有第三方启动器界面，也没有外部启动器窗口。
@@ -30,7 +30,7 @@ PCL One.exe launch <gameDir> <instance> [server] [--java path] [--memory MB] [--
 
 ## 游戏内菜单怎么来的
 
-`src/earth/mod/pclone-menu` 是一个 Fabric 客户端 Mod（`pcl-one-menu`）：
+`menu/` 是一个 Fabric 客户端 Mod（`pcl-one-menu`）：
 
 - 用 Fabric Screen API 的 `ScreenEvents.AFTER_INIT` 往原版标题界面加一个按钮；
 - 按钮打开 `PclOneScreen`，里面 7 个按钮覆盖全部功能；
@@ -58,22 +58,22 @@ versions/<id>/<id>.json（含 inheritsFrom）
 ## 源码结构
 
 ```text
-PCL One/
-├─ pcl-one.json                  # 地址、端口、实例、版本、java 路径
-├─ build.ps1                     # 菜单 Mod + EXE + payload + zip + 单文件 exe
-├─ shared/mods.json              # 地球 Mod 清单（固定 sha1）
-├─ src/
-│  ├─ shell/PCLOne.cs            # 无窗口启动器（参数 → 引擎 → java）
-│  ├─ shell/McLaunch.cs          # 启动引擎
-│  ├─ shell/PCLOneSetup.cs       # 静默自解压引导器
-│  ├─ earth/mod/pclone-menu/     # 游戏内菜单 Mod（Fabric，无 Mixin）
-│  ├─ earth/client|server|docs/  # 地球安装器/服务端/文档源码
-│  ├─ mobile/                    # 手机 APK 源码（保留，不随包发布）
-│  └─ generated/                 # 构建生成物
-├─ tools/build-menu-mod.ps1      # javac + jar 构建游戏内菜单
-├─ tools/prepare-earth-offline.ps1
-├─ vendor/                       # Earth payload / JDK 来源 / 泰坦 / 服务端
-└─ dist/
+PCL-One/                         # 一个仓库，按“运行物”分模块
+├─ pcl-one.json                  # 唯一产品配置：地址、端口、实例、版本、java
+├─ build.ps1                     # 唯一构建入口：菜单 + EXE + payload + zip + 单文件 exe
+├─ launcher/                     # 桌面无窗口启动器（PCLOne.cs / McLaunch.cs / Setup）
+├─ menu/                         # 游戏内 Fabric 菜单 Mod（无 Mixin）
+├─ earth/                        # 地球客户端/服务端/安装器/文档源码
+├─ mobile/
+│  ├─ link/                      # 手机联机助手（APK 源码）
+│  └─ pojav/                     # PojavLauncher 分支（Android Java 启动器）
+├─ custom/                       # PCL-Custom 启动器源码（PCL CE 二次开发）
+├─ generated/                    # 构建生成物（配置、SfxInfo、OfficialServers）
+├─ tools/                        # 菜单构建、地球离线打包、配置生成
+├─ shared/                       # Mod 清单等共享数据
+├─ docs/                         # 设计、离线包、迁移文档
+├─ vendor/                       # 二进制来源：MC/JDK/泰坦/服务端（不入库）
+└─ dist/                         # 构建产物（不入库）
 ```
 
 ## 构建

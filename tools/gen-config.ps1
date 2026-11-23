@@ -1,11 +1,11 @@
-<#
+﻿<#
   Single source of truth generator.
   Reads pcl-one.json and renders:
-    src/generated/OfficialServers.java   -> copied into the mobile app before build
-    src/generated/servers.json           -> server control plane
-    src/generated/earth.html             -> public guide
-    src/generated/mods.json              -> Earth client payload
-    src/generated/quickplay.json         -> Earth installer defaults
+    generated/OfficialServers.java   -> copied into the mobile app before build
+    generated/servers.json           -> server control plane
+    generated/earth.html             -> public guide
+    generated/mods.json              -> Earth client payload
+    generated/quickplay.json         -> Earth installer defaults
 #>
 [CmdletBinding()]
 param(
@@ -18,7 +18,7 @@ $cfgPath = Join-Path $Root "pcl-one.json"
 if (-not (Test-Path $cfgPath)) { throw "missing pcl-one.json: $cfgPath" }
 $cfg = Get-Content $cfgPath -Raw -Encoding UTF8 | ConvertFrom-Json
 
-$gen = Join-Path $Root "src\generated"
+$gen = Join-Path $Root "generated"
 New-Item -ItemType Directory -Force -Path $gen | Out-Null
 
 $map = @{
@@ -45,17 +45,17 @@ function Render([string]$templatePath, [string]$outPath) {
     Write-Host ("generated {0}" -f $outPath)
 }
 
-$javaTpl = Join-Path $Root "src\mobile\OfficialServers.java.tpl"
+$javaTpl = Join-Path $Root "mobile\link\OfficialServers.java.tpl"
 $javaOut = Join-Path $gen "OfficialServers.java"
 Render $javaTpl $javaOut
-$javaDst = Join-Path $Root "src\mobile\app\src\com\pclpro\mobile\OfficialServers.java"
+$javaDst = Join-Path $Root "mobile\link\app\src\com\pclpro\mobile\OfficialServers.java"
 Copy-Item $javaOut $javaDst -Force
 
-$htmlTpl = Join-Path $Root "src\earth\server\control\earth.html.tpl"
+$htmlTpl = Join-Path $Root "earth\server\control\earth.html.tpl"
 if (Test-Path $htmlTpl) {
     Render $htmlTpl (Join-Path $gen "earth.html")
     # Offline mobile guide: bundled into the APK assets, no URL needed.
-    $mobileAssets = Join-Path $Root "src\mobile\app\assets"
+    $mobileAssets = Join-Path $Root "mobile\link\app\assets"
     New-Item -ItemType Directory -Force -Path $mobileAssets | Out-Null
     Copy-Item (Join-Path $gen "earth.html") (Join-Path $mobileAssets "earth.html") -Force
 }

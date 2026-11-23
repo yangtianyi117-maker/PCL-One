@@ -1,4 +1,4 @@
-<#
+﻿<#
   Assemble the portable, fully offline Earth game payload.
 
   What it produces (default: vendor/earth/game):
@@ -46,7 +46,7 @@ $serverName = [string]$cfg.earth.serverName
 if (-not $OutDir) { $OutDir = Join-Path $Root "vendor\earth\game" }
 $modsDir = Join-Path $Root "vendor\earth\mods"
 $manifestPath = Join-Path $Root "shared\mods.json"
-$serversDatScript = Join-Path $Root "src\earth\client\New-ServersDat.ps1"
+$serversDatScript = Join-Path $Root "earth\client\New-ServersDat.ps1"
 
 function Step([string]$m) { Write-Host ("==> {0}" -f $m) }
 function Ensure([string]$p) { if (-not (Test-Path $p)) { throw "missing: $p" } }
