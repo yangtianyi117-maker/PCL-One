@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PCL Earth · 地球服</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; font: 16px/1.7 -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+         background: #0f1216; color: #d8dee9; }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 20px 80px; }
+  h1 { font-size: 28px; margin: 0 0 8px; color: #fff; }
+  h2 { font-size: 18px; margin: 32px 0 8px; color: #8fd3a8; }
+  p, li { color: #b9c2cf; }
+  code { background: #1b2129; padding: 2px 6px; border-radius: 4px; color: #e6c07b; }
+  .card { background: #161b22; border: 1px solid #232b36; border-radius: 10px; padding: 16px 18px; margin: 12px 0; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .badge { background: #1f2a24; color: #8fd3a8; border: 1px solid #2e4437; border-radius: 999px;
+           padding: 2px 10px; font-size: 13px; }
+  a { color: #79b8ff; }
+  small { color: #6b7686; }
+</style>
+</head>
+<body>
+<main>
+  <h1>PCL Earth · 地球服</h1>
+  <p>一张真实地球地图，PC Java 与手机 Bedrock 在同一个世界。出生在伊斯坦布尔，去你现实中的家乡建城、建国、打仗。</p>
+  <div class="row">
+    <span class="badge">1:1000</span>
+    <span class="badge">单世界 · 不重置</span>
+    <span class="badge">Java + Bedrock</span>
+  </div>
+
+  <h2>怎么进</h2>
+  <div class="card">
+    <p><b>PC：</b>打开 PCL One →「进入地球」；安装过地球扩展的话会自动进服。</p>
+    <p><b>手机：</b>安装 Minecraft 基岩版，添加服务器 <code>124.221.231.213</code>，端口 <code>19132</code>；或在 PCL Pro 手机版大厅点「地球服 → 进入」。</p>
+    <p><b>地址：</b>Java <code>124.221.231.213:25566</code> · Bedrock <code>124.221.231.213:19132</code></p>
+  </div>
+
+  <h2>出生点与坐标</h2>
+  <p>出生点：伊斯坦布尔，博斯普鲁斯海峡西岸，约 <code>3233, 64, -4826</code>。</p>
+  <p>地图是 Web Mercator 投影：<code>x = 经度 / 179 × 19968</code>，
+     <code>z = 192 − (Mercator(纬度) / Mercator(80°)) × 15552</code>。</p>
+  <p>参考：北京约 <code>12986, -4664</code>；纽约约 <code>-8256, -4782</code>；开罗约 <code>3484, -3320</code>；里约约 <code>-4816, 2815</code>；悉尼约 <code>16868, 4207</code>。</p>
+
+  <h2>规则摘要</h2>
+  <ul>
+    <li>建镇 1,000；建国 5,000；每格领地 10；单镇上限 256 格。</li>
+    <li>允许战争：宣战需战争金 2,000，持续 48 小时；出生点/公共设施免战。</li>
+    <li>允许 <code>/spawn</code>；默认禁用跨洲 <code>/tpa</code> 与 <code>/home</code>。</li>
+    <li>禁止外挂、透视、复制物品、恶意卡服、破坏出生点。</li>
+  </ul>
+
+  <h2>边界</h2>
+  <p>X ∈ [−19968, 19968]，Z ∈ [−15360, 15744]；矩形边界由 ChunkyBorder 维护，走出边界会被拦回。</p>
+
+  <h2>说明</h2>
+  <p><small>地图数据由 EarthMC 提供并授权在自有服务器运行；世界文件不对外分发。服务器不销售影响平衡的内容。Minecraft 为 Mojang/Microsoft 商标，本服非官方。</small></p>
+</main>
+</body>
+</html>

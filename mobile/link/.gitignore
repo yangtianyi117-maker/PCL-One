@@ -1,0 +1,14 @@
+# build outputs / local signing data
+build/
+dist/
+keystore/
+*.apk
+*.idsig
+
+# local launcher experiments and the Pojav fork live in separate trees
+java-launcher/
+mobile-fork/
+
+# local runtime
+*.log
+.tmp/
