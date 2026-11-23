@@ -1,0 +1,47 @@
+﻿PCL Pro 签名更新包（2026-11-21.8）
+
+这是“带自动更新器”的版本。安装这一次之后，以后启动 PCL Pro 会自动检查
+http://124.221.231.213/pclpro/ 的签名清单；有新版就静默下载、验签、替换，
+提示“重启启动器生效”，不会在游戏进行中重启。
+
+一、先验证，再替换
+
+在 PowerShell 里进入本包目录，执行：
+
+    powershell -NoProfile -ExecutionPolicy Bypass -File .\verify-update.ps1
+
+看到 PASS 再继续；看到 FAIL 就不要用，重新向发送者要包。
+
+二、替换启动器
+
+1. 完全退出 PCL Pro 和 Minecraft；
+2. 备份 PCL Pro\PCLPro.exe；
+3. 用本包的 PCLPro.exe 覆盖；
+4. 双击启动。首次启动会把 PCLProRuntime 代码更新到 2026-11-21.8，
+   只覆盖程序文件，保留 PCL\ 里的账号、实例、存档、mod。
+
+三、自动更新
+
+- 更新源：http://124.221.231.213/pclpro/
+- 客户端内置 ECDSA 公钥；只接受同一私钥签名、SHA-256 匹配、且 buildNumber 更大的包。
+- 下载支持断点续传和超时重试；失败不会替换旧版。
+- 下载的是 bootstrapper（PCLPro.exe）；运行时在下次启动时按 .payload-version 更新。
+- 失败只写日志，不影响当前使用。
+
+四、这个版本的变化
+
+- 修复启动游戏时“获取启动参数失败 / NullReferenceException”：
+  实例未选中或 JSON 不可读时自动选择可用实例，不再空引用崩溃；
+- 加入页显示当前游戏用户名，并提示离线模式同名会报 “That name is already taken”；
+- 自动更新下载加入断点续传、超时重试和远端 SHA-256 校验；
+- 删除游戏内悬浮的“PCL Pro 建房”按钮；
+- 修复加入大厅时“远程主机强迫关闭连接”的级联报错；
+- 加入页新增“加入后手动进入（在‘多人游戏’列表里点，不自动进服）”。
+
+五、信任锚
+
+verify-update.ps1 里内置公钥；公钥指纹在 key-fingerprint.txt。
+请通过聊天/其他可信渠道核对指纹；如果别人同时改掉脚本和指纹，你只有
+核对过指纹才能发现。
+
+私钥不随包分发，只保存在发布者本机。

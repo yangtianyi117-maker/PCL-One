@@ -1,0 +1,50 @@
+PCL 定制版 / PCL Custom
+======================================
+
+本项目是第三方基于 PCL 的独立二次创作，**与 PCL 官方无关**，不是官方后续版本。
+
+上游
+----
+
+- PCL / Plain Craft Launcher，作者：龙腾猫跃（成都瓜皮龙科技有限公司）
+  <https://github.com/Meloong-Git/PCL> · <https://meloong.com/PCL>
+- PCL 社区版（PCL CE），本项目直接基于其 2.15.1 源码
+  <https://github.com/PCL-Community/PCL-CE>
+
+署名与赞助
+----------
+
+- 作者：龙腾猫跃
+- 赞助：<https://afdian.com/a/LTCat>
+
+许可
+----
+
+本仓库沿用上游的双许可结构，逐字保留，未做修改：
+
+- `LICENSE`：仓库根许可。`Plain Craft Launcher 2/` 之外的目录为 Apache License 2.0；
+  `Plain Craft Launcher 2/` 目录适用自定义许可。
+- `LICENCE`：《PCL 分发有限许可》与《PCL 存储库合理使用指南》全文。
+- 本项目的修改（新增/改动的文件）同样受上述许可约束。
+
+依据《合理使用指南》"重度使用"，本仓库承诺：
+
+1. 明确声明这是第三方基于 PCL 的独立二次创作；
+2. 名称使用 `Plain Craft Launcher (PCL)` 开头的第三方修改版命名；
+3. 关于页首位给出龙腾猫跃署名与赞助链接，公开源代码，并继续以该指南为准；
+4. 公开发布的构建启用与上游 `McLaunchPrecheck` 一致的正版购买劝导
+   （构建参数 `-PublicRelease`，定义 `PUBLIC_RELEASE`）；
+5. Windows 上不提供类似"赞助解锁"的功能，界面主色相保持蓝色。
+
+本项目额外新增的代码主要涉及：服务器列表、Mod 收件箱、签名自动更新、便携模式与界面整理。
+原 PCL 的联机房间、EasyTier 等模块保留但不再是默认入口。
+
+第三方组件
+----------
+
+见 `NOTICE` 与 `tools/pclce/PCL-CE-dev/PCL.Core/NOTICE`。
+
+安全
+----
+
+更新签名私钥、VPS 凭据等**不在仓库中**；见 `SECURITY.md`。

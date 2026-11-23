@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "updated": "2026-11-22",
+  "note": "Client-side Minecraft Java mods. Loading these only changes the local client; a server does not need them. Android/Pojav rendering compatibility varies.",
+  "categories": [
+    {
+      "id": "performance",
+      "name": "性能优化",
+      "desc": "提升帧率、降低内存与卡顿",
+      "mods": [
+        { "name": "Sodium", "slug": "sodium", "side": "client", "desc": "重写渲染管线，帧率提升最明显。", "android": "Android 上可能不兼容" },
+        { "name": "Lithium", "slug": "lithium", "side": "client", "desc": "优化游戏逻辑（AI、物理、区块）。" },
+        { "name": "FerriteCore", "slug": "ferrite-core", "side": "client", "desc": "降低内存占用。" },
+        { "name": "ImmediatelyFast", "slug": "immediatelyfast", "side": "client", "desc": "优化即时模式渲染。" },
+        { "name": "EntityCulling", "slug": "entityculling", "side": "client", "desc": "剔除被遮挡的实体。" },
+        { "name": "ModernFix", "slug": "modernfix", "side": "client", "desc": "启动、内存与兼容性修复。" },
+        { "name": "Dynamic FPS", "slug": "dynamic-fps", "side": "client", "desc": "窗口失焦时自动降帧。" },
+        { "name": "BadOptimizations", "slug": "badoptimizations", "side": "client", "desc": "杂项性能补丁集合。" },
+        { "name": "Enhanced Block Entities", "slug": "ebe", "side": "client", "desc": "箱子/告示牌等方块实体渲染优化。" },
+        { "name": "Sodium Extra", "slug": "sodium-extra", "side": "client", "desc": "Sodium 的额外画质与性能选项。" },
+        { "name": "Krypton", "slug": "krypton", "side": "client", "desc": "网络栈优化，降低延迟。" }
+      ]
+    },
+    {
+      "id": "visual",
+      "name": "画面与光影",
+      "desc": "光影、连接材质、动态光源",
+      "mods": [
+        { "name": "Iris Shaders", "slug": "iris", "side": "client", "desc": "光影加载器，配 Sodium 使用。", "android": "Android 上可能不兼容" },
+        { "name": "Indium", "slug": "indium", "side": "client", "desc": "Sodium 与 Fabric 渲染 API 的兼容层。" },
+        { "name": "Continuity", "slug": "continuity", "side": "client", "desc": "连接材质（OptiFine 连接纹理替代）。" },
+        { "name": "LambDynamicLights", "slug": "lambdynamiclights", "side": "client", "desc": "手持光源动态照亮周围。" },
+        { "name": "Entity Model Features", "slug": "entity-model-features", "side": "client", "desc": "自定义实体模型（CEM）。", "android": "Android 上可能不兼容" },
+        { "name": "Entity Texture Features", "slug": "entitytexturefeatures", "side": "client", "desc": "随机/发光实体材质。" },
+        { "name": "3D Skin Layers", "slug": "3dskinlayers", "side": "client", "desc": "把皮肤外层渲染成立体。" }
+      ]
+    },
+    {
+      "id": "ui",
+      "name": "界面与操作",
+      "desc": "菜单、背包、按键与 HUD",
+      "mods": [
+        { "name": "Mod Menu", "slug": "modmenu", "side": "client", "desc": "Fabric 的 Mod 列表与配置入口。" },
+        { "name": "Mouse Tweaks", "slug": "mouse-tweaks", "side": "client", "desc": "鼠标拖拽整理物品。" },
+        { "name": "AppleSkin", "slug": "appleskin", "side": "client", "desc": "显示饱和度与饥饿恢复。" },
+        { "name": "Zoomify", "slug": "zoomify", "side": "client", "desc": "望远镜式缩放。" },
+        { "name": "Inventory Profiles Next", "slug": "inventory-profiles-next", "side": "client", "desc": "一键整理背包与容器。" },
+        { "name": "Shulker Box Tooltip", "slug": "shulkerboxtooltip", "side": "client", "desc": "潜影盒内容预览。" },
+        { "name": "BetterF3", "slug": "betterf3", "side": "client", "desc": "更好看、可配置的 F3。" },
+        { "name": "Chat Heads", "slug": "chat-heads", "side": "client", "desc": "聊天栏显示玩家头像。" },
+        { "name": "FancyMenu", "slug": "fancymenu", "side": "client", "desc": "自定义标题、暂停与加载界面。" },
+        { "name": "Controlling", "slug": "controlling", "side": "client", "desc": "可搜索的按键绑定界面。" }
+      ]
+    },
+    {
+      "id": "info",
+      "name": "信息与配方",
+      "desc": "方块信息、配方查询",
+      "mods": [
+        { "name": "Jade", "slug": "jade", "side": "client", "desc": "准星指向方块/实体的信息。" },
+        { "name": "MiniHUD", "slug": "minihud", "side": "client", "desc": "坐标、生物群系、光照等信息叠加。" },
+        { "name": "BBOR", "slug": "bbor", "side": "client", "desc": "结构边界框显示。" },
+        { "name": "JEI", "slug": "jei", "side": "client", "desc": "物品与配方查询（Forge/NeoForge）。" },
+        { "name": "REI", "slug": "rei", "side": "client", "desc": "物品与配方查询（Fabric）。" },
+        { "name": "EMI", "slug": "emi", "side": "client", "desc": "配方查询与合成树。" }
+      ]
+    },
+    {
+      "id": "map",
+      "name": "地图",
+      "desc": "小地图与世界地图",
+      "mods": [
+        { "name": "Xaero's Minimap", "slug": "xaeros-minimap", "side": "client", "desc": "小地图、路径点与实体雷达。" },
+        { "name": "Xaero's World Map", "slug": "xaeros-world-map", "side": "client", "desc": "全屏世界地图，配小地图使用。" },
+        { "name": "JourneyMap", "slug": "journeymap", "side": "client", "desc": "另一套小地图/世界地图方案。" }
+      ]
+    },
+    {
+      "id": "animation",
+      "name": "动画与模型",
+      "desc": "动作、披风与自定义玩家模型",
+      "mods": [
+        { "name": "Not Enough Animations", "slug": "not-enough-animations", "side": "client", "desc": "第三人称动作增强。" },
+        { "name": "Wavey Capes", "slug": "wavey-capes", "side": "client", "desc": "披风摆动效果。" },
+        { "name": "Figura", "slug": "figura", "side": "both", "desc": "自定义玩家模型；要别人看见需对方也装并同步。" },
+        { "name": "Emotecraft", "slug": "emotecraft", "side": "both", "desc": "表情动作；服务端/对方需同装才共享。" }
+      ]
+    },
+    {
+      "id": "audio",
+      "name": "声音",
+      "desc": "环境音与物理声效",
+      "mods": [
+        { "name": "Sound Physics Remastered", "slug": "sound-physics-remastered", "side": "client", "desc": "回声、遮挡与混响。" },
+        { "name": "Presence Footsteps", "slug": "presence-footsteps", "side": "client", "desc": "更真实的脚步声。" },
+        { "name": "AmbientSounds", "slug": "ambientsounds", "side": "client", "desc": "环境氛围音。" }
+      ]
+    },
+    {
+      "id": "libs",
+      "name": "前置库",
+      "desc": "很多 Mod 需要的前置依赖",
+      "mods": [
+        { "name": "Fabric API", "slug": "fabric-api", "side": "client", "desc": "Fabric 生态的通用前置。" },
+        { "name": "Cloth Config API", "slug": "cloth-config", "side": "client", "desc": "通用配置界面前置。" },
+        { "name": "Architectury API", "slug": "architectury-api", "side": "client", "desc": "跨加载器前置。" },
+        { "name": "YACL", "slug": "yacl", "side": "client", "desc": "Yet Another Config Lib，配置界面前置。" }
+      ]
+    }
+  ]
+}
