@@ -62,7 +62,7 @@ ScreenEvents.AFTER_INIT（Fabric Screen API）
 | 启动泰坦 1.7.10 / 1.12.2 | 包内客户端 + Java 8，0 下载 |
 | 开泰坦服 | 包内服务端，0 下载 |
 | 游戏内菜单 | 包内 Mod，0 下载 |
-| 自检 | 20 项：计划、资源、Mod、菜单 Mod、快捷方式、无控制台脚本 |
+| 自检 | 21 项：计划、资源、Mod、菜单 Mod、服务器列表、快捷方式、无控制台脚本 |
 
 **仍需要网络**：地球服本体（`124.221.231.213:25566` / `19132`）。
 没网时快捷方式启动会按单机；菜单里的「进入地球（在线）」会显示原版连接失败的提示。
@@ -71,7 +71,7 @@ ScreenEvents.AFTER_INIT（Fabric Screen API）
 
 ```text
 dist/PCL One/
-├─ 进入地球.lnk  地球单机.lnk  泰坦 1.7.10.lnk  泰坦 1.12.2.lnk  开泰坦服.lnk  离线自检.lnk
+├─ 进入地球.lnk  地球单机.lnk  泰坦 1.7.10.lnk  泰坦 1.12.2.lnk  开泰坦服.lnk  离线自检.lnk\n├─ servers.txt             # 服务器列表（菜单“服务器列表”读取）
 ├─ PCL One.exe
 ├─ PCLOne-settings.json     # 可选：用户名 / 内存
 ├─ Earth/

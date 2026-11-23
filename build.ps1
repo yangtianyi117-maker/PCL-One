@@ -133,6 +133,12 @@ New-Lnk (Join-Path $stage "泰坦 1.12.2.lnk") $target "titan1122" $stage "泰�
 New-Lnk (Join-Path $stage "开泰坦服.lnk") $target "server" $stage "1.7.10 Forge 服务端"
 New-Lnk (Join-Path $stage "离线自检.lnk") $target "selftest" $stage "生成 PCLOne-selftest.txt"
 
+Step "write servers.txt"
+$serversLines = @(
+    ("{0}|{1}:{2}|Earth\.minecraft|{3}" -f $cfg.earth.serverName, $cfg.earth.host, $cfg.earth.javaPort, $cfg.earth.instance)
+)
+Write-Utf8 (Join-Path $stage "servers.txt") (($serversLines -join "`r`n") + "`r`n") $false
+
 Step "write 离线包说明.txt"
 $readmeText = @"
 PCL One 离线包 v$ver（无界面版）
@@ -144,7 +150,7 @@ PCL One 离线包 v$ver（无界面版）
 一、怎么用
   - 双击「进入地球.lnk」：进游戏后，标题界面右上角有「PCL One」按钮，全部功能都在里面
   - 菜单第一项「开始游戏（版本列表）」会列出包内所有已安装版本（地球/泰坦/自建实例），点哪个启动哪个
-  - 其它按钮：进入地球（在线）、开泰坦服、离线自检、打开综合包目录、刷新版本
+  - 其它按钮：进入地球（在线）、服务器列表、开泰坦服、离线自检、设置（用户名/内存）、打开综合包目录、刷新
   - 也可以直接用桌面快捷方式启动对应版本
   - 双击「PCL One.exe」= 进入地球（默认动作）
 

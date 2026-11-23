@@ -24,7 +24,7 @@ public final class PclOneScreen extends Screen
 {
     private static final String HOST = "124.221.231.213";
     private static final int PORT = 25566;
-    private static final int PAGE_SIZE = 6;
+    private static final int PAGE_SIZE = 4;
 
     private final List<VersionEntry> versions = new ArrayList<>();
     private final int page;
@@ -74,13 +74,15 @@ public final class PclOneScreen extends Screen
             add(x, y, w, h, shorten(entry.label), () -> launchVersion(entry));
         }
 
-        int actions = top + 3 * step + 4;
+        int actions = top + 2 * step + 6;
         add(cx - 214, actions, 208, h, "进入地球（在线）", this::joinEarth);
-        add(cx + 6, actions, 208, h, "开泰坦服", () -> launch("server"));
-        add(cx - 214, actions + step, 208, h, "离线自检", () -> launch("selftest"));
-        add(cx + 6, actions + step, 208, h, "打开综合包目录", this::openFolder);
+        add(cx + 6, actions, 208, h, "服务器列表", () -> Minecraft.getInstance().setScreenAndShow(new ServerScreen(0)));
+        add(cx - 214, actions + step, 208, h, "开泰坦服", () -> launch("server"));
+        add(cx + 6, actions + step, 208, h, "离线自检", () -> launch("selftest"));
+        add(cx - 214, actions + step * 2, 208, h, "设置（用户名/内存）", () -> Minecraft.getInstance().setScreenAndShow(new SettingsScreen()));
+        add(cx + 6, actions + step * 2, 208, h, "打开综合包目录", this::openFolder);
 
-        int nav = actions + 2 * step;
+        int nav = actions + 3 * step;
         if (page > 0) add(cx - 214, nav, 100, h, "上一页", () -> Minecraft.getInstance().setScreenAndShow(new PclOneScreen(page - 1)));
         add(cx - 50, nav, 100, h, "刷新", () -> Minecraft.getInstance().setScreenAndShow(new PclOneScreen(page)));
         if (end < versions.size()) add(cx + 114, nav, 100, h, "下一页", () -> Minecraft.getInstance().setScreenAndShow(new PclOneScreen(page + 1)));

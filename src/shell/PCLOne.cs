@@ -500,6 +500,7 @@ namespace PCLOne
             bool allShortcuts = true;
             foreach (var lnk in shortcuts) if (!File.Exists(Path.Combine(Root, lnk))) allShortcuts = false;
             check("Shortcuts (6)", allShortcuts, Root + "\\*.lnk");
+            check("Server list", File.Exists(Path.Combine(Root, "servers.txt")), Path.Combine(Root, "servers.txt"));
 
             int consoleScripts = 0;
             try
